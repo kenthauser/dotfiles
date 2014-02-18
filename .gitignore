@@ -1,5 +1,10 @@
 # Compiled Python files
 *.pyc
+*.egg-info
+
+# Temp files that should not be committed
+*~
+*.sublime-workspace
 
 # Folder view configuration files
 .DS_Store
