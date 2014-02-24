@@ -1,0 +1,21 @@
+Vagrant::Config.run do |config|
+	# enable local caching
+	config.vm.provision :shell,
+	    :inline => "echo 'Acquire::http { Proxy \"http:192.168.101.10:3142\"; };' > /etc/apt/apt.conf"
+	config.ssh.forward_agent = true
+	
+	# create Python directories
+	config.vm.provision :shell,
+	     :inline => "mkdir -p -m 777 .pip .buildout"
+
+	config.vm.provision :shell do |pip|
+	     pip.inline = "echo $1 > .pip/pip.conf; echo $2 >> .pip/pip.conf"
+	     pip.args = "'[global]' 'index-url = http://pypi/simple'"
+	end
+
+	config.vm.provision :shell do |buildout|
+buildout.inline = "for x in $*; do echo $x; done > .buildout/default.cfg"
+	     buildout.args = "'[buildout]' 'eggs-directory=/home/vagrant/.buildout/eggs' 'index=http://pypi/simple'"
+	end
+end	
+
