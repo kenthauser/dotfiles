@@ -49,7 +49,7 @@ bind 2:shift;alt layout officeLayout
 # bind j:ctrl;alt resize +0 -1% bottom-right
 
 # Move/Corner bindings
-bind .:shift;cmd ${full}
+bind ,:shift;cmd ${full}
 bind h:shift;cmd ${lefthalf}
 bind j:shift;cmd ${bottomhalf}
 bind k:shift;cmd ${tophalf}
